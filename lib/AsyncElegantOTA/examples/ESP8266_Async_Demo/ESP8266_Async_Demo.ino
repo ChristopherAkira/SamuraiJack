@@ -1,19 +1,16 @@
-#include <WiFi.h>
-#include <AsyncTCP.h>
-//#define OTA 
-#ifdef OTA
+#include <ESP8266WiFi.h>
+#include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <AsyncElegantOTA.h>
-AsyncWebServer server(80);
-const char* ssid = "MM";
-const char* password = "mmdirecao@";
-#endif
 
+const char* ssid = "........";
+const char* password = "........";
+
+AsyncWebServer server(80);
 
 
 void setup(void) {
   Serial.begin(115200);
-  #ifdef OTA
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   Serial.println("");
@@ -30,14 +27,12 @@ void setup(void) {
   Serial.println(WiFi.localIP());
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send(200, "text/plain", "Hi! I am ESP32.");
+    request->send(200, "text/plain", "Hi! I am ESP8266.");
   });
 
   AsyncElegantOTA.begin(&server);    // Start ElegantOTA
   server.begin();
   Serial.println("HTTP server started");
-  #endif
-
 }
 
 void loop(void) {

@@ -1,19 +1,16 @@
 #include <WiFi.h>
 #include <AsyncTCP.h>
-//#define OTA 
-#ifdef OTA
 #include <ESPAsyncWebServer.h>
 #include <AsyncElegantOTA.h>
-AsyncWebServer server(80);
-const char* ssid = "MM";
-const char* password = "mmdirecao@";
-#endif
 
+const char* ssid = "........";
+const char* password = "........";
+
+AsyncWebServer server(80);
 
 
 void setup(void) {
   Serial.begin(115200);
-  #ifdef OTA
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   Serial.println("");
@@ -36,8 +33,6 @@ void setup(void) {
   AsyncElegantOTA.begin(&server);    // Start ElegantOTA
   server.begin();
   Serial.println("HTTP server started");
-  #endif
-
 }
 
 void loop(void) {
