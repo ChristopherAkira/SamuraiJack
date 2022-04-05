@@ -1,13 +1,19 @@
 #include <WiFi.h>
 #include <AsyncTCP.h>
+#include "Adafruit_VL53L0X.h"
+#include "VL_Funcs.h"
+
+
+
 //#define OTA 
 #ifdef OTA
 #include <ESPAsyncWebServer.h>
 #include <AsyncElegantOTA.h>
 AsyncWebServer server(80);
-const char* ssid = "MM";
-const char* password = "mmdirecao@";
+const char* ssid = "HASHI";
+const char* password = "GETWICKED";
 #endif
+
 
 
 
